@@ -21,6 +21,16 @@ The LEDs can be customized in all three areas, allowing for the full range of RG
 
 Unfortunately, there is a technical limitation: the library only supports the non-Xbox versions of the pad. Look for pads with the FCC-ID ending in 61482. The Xbox pad ends with 61480.
 
+## Getting started
+
+To enable reading NFC tags with the Toypad, you have to install a driver. You can find more details here: [Driver installation](https://github.com/Ellerbach/LegoDimensions?tab=readme-ov-file#driver-installation). In short, you have to follow these steps:
+1. Download and run [Zadig](https://zadig.akeo.ie/)
+1. Enable Options > List All Devices
+1. Select "LEGO Reader V2.10" in the devices list 
+1. Select WinUSB in the list at right of the green arrow and press the Install / Reinstall Driver button. 
+
+With that you should be able to see the tags you placed on the Toypad in the Launcher app.
+
 ## Tags
 
 As far as I can see, the pad is able to read most modern NFC tag formats. You can, of course, use the original LEGO® Dimensions figures and sockets, but they are very expensive compared to regular NFC tags.
