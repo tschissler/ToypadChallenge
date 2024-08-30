@@ -58,37 +58,42 @@ namespace Toypad.Launcher.Plugins.MQTT
 
         private void ToypadOnTagRemoved(object? sender, Tag tag)
         {
-
             if (_client != null)
             {
-                if (cbMessageType.SelectedIndex == 0)
-                {
-                    string msg = "{ \"UID\": \"" + BitConverter.ToString(tag.Uid.ToArray()) + "\", \"event\": \"remove\" }";
-
-                    _client.Publish(tbMQTTTopic.Text, Encoding.UTF8.GetBytes(msg));
-                }
+                this.Invoke((MethodInvoker)delegate {
+                    if (cbMessageType.SelectedIndex == 0)
+                    {
+                        string msg = "{ \"UID\": \"" + BitConverter.ToString(tag.Uid.ToArray()) + "\", \"event\": \"remove\" }";
+                        _client.Publish(tbMQTTTopic.Text, Encoding.UTF8.GetBytes(msg));
+                    }
+                });
             }
 
-            tbUID.Text = string.Empty;
+            this.Invoke((MethodInvoker)delegate {
+                tbUID.Text = string.Empty;
+            });
         }
 
         private void ToypadOnTagAdded(object? sender, Tag tag)
         {
             if (_client != null)
             {
-                if (cbMessageType.SelectedIndex == 0)
-                {
-                    string msg = "{ \"UID\": \"" + BitConverter.ToString(tag.Uid.ToArray()) + "\", \"event\": \"add\" }";
-
-                    _client.Publish(tbMQTTTopic.Text, Encoding.UTF8.GetBytes(msg));
-                }
-                else
-                {
-                    _client.Publish(tbMQTTTopic.Text, Encoding.UTF8.GetBytes(BitConverter.ToString(tag.Uid.ToArray())));
-                }
+                this.Invoke((MethodInvoker)delegate {
+                    if (cbMessageType.SelectedIndex == 0)
+                    {
+                        string msg = "{ \"UID\": \"" + BitConverter.ToString(tag.Uid.ToArray()) + "\", \"event\": \"add\" }";
+                        _client.Publish(tbMQTTTopic.Text, Encoding.UTF8.GetBytes(msg));
+                    }
+                    else
+                    {
+                        _client.Publish(tbMQTTTopic.Text, Encoding.UTF8.GetBytes(BitConverter.ToString(tag.Uid.ToArray())));
+                    }
+                });
             }
 
-            tbUID.Text = BitConverter.ToString(tag.Uid.ToArray());
+            this.Invoke((MethodInvoker)delegate {
+                tbUID.Text = BitConverter.ToString(tag.Uid.ToArray());
+            });
         }
 
         public void SetConfiguration(MQTTConfiguration configuration)
