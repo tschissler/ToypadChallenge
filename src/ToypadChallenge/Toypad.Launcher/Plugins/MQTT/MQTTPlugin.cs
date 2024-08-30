@@ -21,7 +21,7 @@ namespace Toypad.Launcher.Plugins.MQTT
         /// <inheritdoc />
         public override void Dispose()
         {
-            if (_control._client != null)
+            if (_control._client != null && _control._client.IsConnected)
             {
                 _control._client.Disconnect();
             }
